@@ -89,7 +89,7 @@ export const diffFieldOverrides = async (targetFile: any) => {
   return missingFieldOverrides;
 };
 
-export const printDiffs = (
+export const writeDiffs = async (
   missingIndexes: any[],
   missingFieldOverrides: any[],
 ) => {
@@ -100,9 +100,11 @@ export const printDiffs = (
   if (missingIndexes.length > 0) {
     spinner.start();
 
-    missingIndexes.forEach((missingIndex) => {
-      console.log('\n\n\r', chalk.red(JSON.stringify(missingIndex, null, 2)));
-    });
+    await fs.writeFile(
+      path.join(process.cwd(), 'diff-indexes.json'),
+      JSON.stringify(missingIndexes, null, 2),
+    );
+
     spinner.stop();
   }
 
@@ -113,12 +115,11 @@ export const printDiffs = (
 
     spinner.start();
 
-    missingFieldOverrides.forEach((missingFieldOverride) => {
-      console.log(
-        '\n\n\r',
-        chalk.red(JSON.stringify(missingFieldOverride, null, 2)),
-      );
-    });
+    await fs.writeFile(
+      path.join(process.cwd(), 'diff-field-overrides.json'),
+      JSON.stringify(missingFieldOverrides, null, 2),
+    );
+
     spinner.stopAndPersist();
   }
 };

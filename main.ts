@@ -2,7 +2,7 @@ import {
   diffFieldOverrides,
   diffIndexes,
   getParsedFiles,
-  printDiffs
+  writeDiffs
 } from './helpers.js';
 import { ProgramArgs } from './types.js';
 
@@ -12,5 +12,5 @@ export default async function main(options: ProgramArgs) {
   const missingIndexes = await diffIndexes(sourceFile, targetFile);
   const missingFieldOverrides = await diffFieldOverrides(targetFile);
 
-  printDiffs(missingIndexes, missingFieldOverrides);
+  writeDiffs(missingIndexes, missingFieldOverrides);
 }
