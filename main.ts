@@ -2,7 +2,7 @@ import {
   diffFieldOverrides,
   diffIndexes,
   getParsedFiles,
-  writeDiffs
+  writeDiffs,
 } from './helpers.js';
 import { ProgramArgs } from './types.js';
 

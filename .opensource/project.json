@@ -1,15 +1,12 @@
 {
-    "name": "Firestore Indexes Diff",
-    "platforms": [
-        "Admin",
-        "Node"
-    ],
-    "content": "README.md",
-    "related": [],
-    "tabs": [
-        {
-            "title": "NPM",
-            "href": "https://www.npmjs.com/package/firestore-indexes-diff"
-        }
-    ]
+  "name": "Firestore Indexes Diff",
+  "platforms": ["Admin", "Node"],
+  "content": "README.md",
+  "related": [],
+  "tabs": [
+    {
+      "title": "NPM",
+      "href": "https://www.npmjs.com/package/firestore-indexes-diff"
+    }
+  ]
 }

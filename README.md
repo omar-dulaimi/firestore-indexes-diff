@@ -1,75 +1,130 @@
-# Firestore Indexes Diff
+# 🔍 Firestore Indexes Diff
 
-[![npm version](https://badge.fury.io/js/firestore-indexes-diff.svg)](https://badge.fury.io/js/firestore-indexes-diff)
-[![npm](https://img.shields.io/npm/dt/firestore-indexes-diff.svg)](https://www.npmjs.com/package/firestore-indexes-diff)
-[![HitCount](https://hits.dwyl.com/omar-dulaimi/firestore-indexes-diff.svg?style=flat)](http://hits.dwyl.com/omar-dulaimi/firestore-indexes-diff)
-[![npm](https://img.shields.io/npm/l/firestore-indexes-diff.svg)](LICENSE)
+<div align="center">
 
-Display differences between two Firestore indexes config files
+[![npm](https://img.shields.io/badge/npm-firestore--indexes--diff-c53635?logo=npm)](https://www.npmjs.com/package/firestore-indexes-diff) [![license](https://img.shields.io/badge/license-MIT-blue)](LICENSE) [![typescript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.typescriptlang.org/) [![vitest](https://img.shields.io/badge/tested%20with-vitest-6E9F18?logo=vitest)](https://vitest.dev/)
 
-<p align="center">
-  <a href="https://www.buymeacoffee.com/omardulaimi">
-    <img src="https://cdn.buymeacoffee.com/buttons/default-yellow.png" alt="Buy Me A Coffee" height="41" width="174">
-  </a>
-</p>
+</div>
 
-## Table of Contents
+A modern CLI tool that displays differences between two Firestore index configuration files, helping you identify missing indexes when deploying across environments.
 
-- [Firestore Indexes Diff](#firestore-indexes-diff)
-  - [Table of Contents](#table-of-contents)
-- [Prerequisites](#prerequisites)
-- [Usage](#usage)
-  - [With npx](#with-npx)
-  - [With npm](#with-npm)
-- [Available Options](#available-options)
+## ✨ Features
 
-# Prerequisites
+- 🚀 Compare Firestore index configurations between environments
+- 📊 Identify missing indexes and field overrides
+- 💡 Clean, colorful CLI output with progress indicators
+- 📁 Export differences to JSON files for further analysis
+- 🔧 Simple command-line interface
 
-- Make sure to have the indexes files ready. Refer to [Cloud Firestore Index Definition Reference](https://firebase.google.com/docs/reference/firestore/indexes) to see how you can export them
+## 📋 Prerequisites
 
-# Usage
+Ensure you have your Firestore index configuration files ready. You can export them using the [Cloud Firestore Index Definition Reference](https://firebase.google.com/docs/reference/firestore/indexes).
 
-- Don't forget to star this repo 😉
+## 🚀 Quick Start
 
-## With npx
-
-```shell
-npx firestore-indexes-diff --source dev.json --target prod.json
-```
-
-## With npm
-
-1- Install the library
-
-- npm
+### Using pnpm dlx (Recommended)
 
 ```bash
- npm install -g firestore-indexes-diff
+pnpm dlx firestore-indexes-diff --source dev.json --target prod.json
+# npx firestore-indexes-diff --source dev.json --target prod.json
+# yarn dlx firestore-indexes-diff --source dev.json --target prod.json
 ```
 
-or
-
-- yarn
+### Global Installation
 
 ```bash
- yarn global add firestore-indexes-diff
-```
+pnpm add -g firestore-indexes-diff
+# npm install -g firestore-indexes-diff
+# yarn global add firestore-indexes-diff
 
-2- Execute command
-
-```shell
 diff-indexes --source dev.json --target prod.json
 ```
 
-# Available Options
+## ⚙️ Options
 
-- `source`: string - Source indexes file path with extension
+| Option      | Alias | Type   | Required | Description              |
+| ----------- | ----- | ------ | -------- | ------------------------ |
+| `--source`  | `-s`  | string | ✅       | Source indexes file path |
+| `--target`  | `-t`  | string | ✅       | Target indexes file path |
+| `--version` | `-v`  |        |          | Show version number      |
+| `--help`    | `-h`  |        |          | Show help                |
 
-  - alias: `s`
-  - required
+## 📤 Output
 
-- `target`: string - Target indexes file path with extension
+The tool generates the following output files in your current directory:
 
-  - alias: `t`
-  - required
+- `diff-indexes.json` - Contains missing indexes
+- `diff-field-overrides.json` - Contains missing field overrides
 
+## 🔄 Workflow Examples
+
+### Development to Production Comparison
+
+```bash
+# Compare your development environment against production
+pnpm dlx firestore-indexes-diff --source dev-indexes.json --target prod-indexes.json
+```
+
+### Staging Environment Sync
+
+```bash
+# Ensure staging has all the indexes from development
+pnpm dlx firestore-indexes-diff --source dev-indexes.json --target staging-indexes.json
+```
+
+### CI/CD Integration
+
+```bash
+# In your CI pipeline, validate index completeness
+- name: Check Firestore Index Completeness
+  run: |
+    # Export current production indexes
+    firebase firestore:indexes > prod-indexes.json
+    
+    # Export your project's indexes
+    firebase firestore:indexes --project ${{ env.PROJECT_ID }} > current-indexes.json
+    
+    # Check for missing indexes
+    pnpm dlx firestore-indexes-diff --source current-indexes.json --target prod-indexes.json
+    
+    # Fail if differences found
+    if [ -f "diff-indexes.json" ]; then
+      echo "Missing indexes detected!"
+      cat diff-indexes.json
+      exit 1
+    fi
+```
+
+### Multi-Environment Validation
+
+```bash
+# Check multiple environments in sequence
+environments=("dev" "staging" "prod")
+for env in "${environments[@]}"; do
+  echo "Checking $env environment..."
+  pnpm dlx firestore-indexes-diff \
+    --source master-indexes.json \
+    --target "$env-indexes.json"
+done
+```
+
+## 🛠️ Development
+
+```bash
+# Clone the repository
+git clone https://github.com/omar-dulaimi/firestore-indexes-diff.git
+cd firestore-indexes-diff
+
+# Install dependencies
+pnpm install
+
+# Build the project
+pnpm run build
+
+# Run in development mode
+pnpm run dev
+```
+
+## 📝 License
+
+MIT © [Omar Dulaimi](https://github.com/omar-dulaimi)
