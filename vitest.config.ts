@@ -7,6 +7,8 @@ export default defineConfig({
     environment: 'node',
     isolate: true,
     pool: 'forks',
+    include: ['tests/**/*.test.ts'],
+    exclude: ['lib/**', 'package/**', 'node_modules/**'],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
