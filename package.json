@@ -1,6 +1,6 @@
 {
   "name": "firestore-indexes-diff",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "type": "module",
   "description": "Displays differences between two Firestore index config files",
   "repository": "https://github.com/omar-dulaimi/firestore-indexes-diff",
