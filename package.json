@@ -61,16 +61,12 @@
     "prettier": "^3.6.2",
     "semantic-release": "^24.2.8",
     "typescript": "^5.9.2",
-    "vitest": "^3.2.4"
+    "vitest": "^3.2.4",
+    "@semantic-release/exec": "^6.0.3"
   },
   "bugs": {
     "url": "https://github.com/omar-dulaimi/firestore-indexes-diff/issues"
   },
   "homepage": "https://github.com/omar-dulaimi/firestore-indexes-diff#readme",
-  "private": false,
-  "files": [
-    "lib/**",
-    "README.md",
-    "LICENSE"
-  ]
+  "private": true
 }
