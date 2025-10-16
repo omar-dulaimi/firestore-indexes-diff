@@ -1,0 +1,13 @@
+{
+  "name": "firestore-indexes-diff",
+  "version": "0.0.0-semantic-release",
+  "type": "module",
+  "description": "Displays differences between two Firestore index config files",
+  "repository": "https://github.com/omar-dulaimi/firestore-indexes-diff",
+  "bin": {
+    "diff-indexes": "lib/bin/index.js"
+  },
+  "license": "MIT",
+  "private": false
+}
+

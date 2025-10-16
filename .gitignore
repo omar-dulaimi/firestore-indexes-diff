@@ -1,4 +1,5 @@
 node_modules
 lib
-package
+package/*
+!package/package.json
 npm-debug.log*
