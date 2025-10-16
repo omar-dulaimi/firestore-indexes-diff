@@ -67,5 +67,10 @@
     "url": "https://github.com/omar-dulaimi/firestore-indexes-diff/issues"
   },
   "homepage": "https://github.com/omar-dulaimi/firestore-indexes-diff#readme",
-  "private": true
+  "private": false,
+  "files": [
+    "lib/**",
+    "README.md",
+    "LICENSE"
+  ]
 }
