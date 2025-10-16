@@ -1,10 +1,10 @@
 #!/bin/bash
 START_TIME=$SECONDS
 
-echo "Buidling package..."
-rm -r lib
+echo "Building package..."
+rm -rf lib
 tsc
-rm -r package
+rm -rf package
 mkdir package
 
 echo "Copying files..."
